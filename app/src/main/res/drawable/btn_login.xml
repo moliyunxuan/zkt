@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 圆角设置 -->
+    <corners
+        android:radius="26dip"
+        android:topLeftRadius="26dp"
+        android:topRightRadius="26dp"
+        android:bottomLeftRadius="26dp"
+        android:bottomRightRadius="26dp"/>
+    <!-- 边框宽度及颜色 -->
+    <stroke android:width="2px" android:color="@color/green" />
+
+
+
+    <gradient
+        android:startColor="@color/greenLight"
+        android:centerColor="@color/green"
+        android:endColor="@color/green"
+        android:useLevel="false"
+
+        android:type="linear"
+        />
+    <!-- 留空 -->
+    <padding
+        android:left="10dp"
+        android:top="10dp"
+        android:right="10dp"
+        android:bottom="10dp"/>
+</shape>

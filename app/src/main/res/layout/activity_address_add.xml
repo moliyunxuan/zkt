@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true">
+
+    <RelativeLayout
+        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:background="@color/material_blue">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="新建收件地址"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/white">
+
+        </TextView>
+        <TextView
+            android:id="@+id/item_save_for_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="保存"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/white">
+        </TextView>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/selector_view_block"
+        android:orientation="vertical"
+        android:padding="16sp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="收件人"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+            <View
+                style="@style/line_horizontal"/>
+
+            <com.example.zkt.ui.widget.ClearEditText
+                android:id="@+id/edittxt_consignee"
+                style="@style/editText_base"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:hint="请输入收件人姓名"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/line_vertical"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="联系电话"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+            <View
+                style="@style/line_horizontal"/>
+
+            <com.example.zkt.ui.widget.ClearEditText
+                android:id="@+id/edittxt_phone"
+                style="@style/editText_base"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:hint="请输入收件人电话"
+                android:inputType="phone"
+                />
+
+
+        </LinearLayout>
+
+        <View
+            style="@style/line_vertical"
+            />
+
+        <LinearLayout
+            android:id="@+id/ll_city_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="联系地址"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+            <View
+                style="@style/line_horizontal"/>
+
+            <TextView
+                android:id="@+id/txt_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/icon_right_64"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/line_vertical"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="详细地址"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+            <View
+                style="@style/line_horizontal"/>
+
+            <com.example.zkt.ui.widget.ClearEditText
+                android:id="@+id/edittxt_add"
+                style="@style/editText_base"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:hint="什么街多少号"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="420dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/home_item_goodimg"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@mipmap/goods_detail_img"
+            android:scaleType="fitXY"/>
+        <RelativeLayout
+            android:layout_below="@+id/home_item_goodimg"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/home_item_goodname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:text="【爆款】光明咕噜咕噜冰淇淋风味浓缩酸奶 180g/袋"
+                android:textSize="16sp"
+                android:textColor="@color/black">
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/home_item_goodcontent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@+id/home_item_goodname"
+                android:orientation="horizontal">
+                <TextView
+                    android:background="@color/gray3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="11sp"
+                    android:padding="1dp"
+                    android:text="七天无理由退款">
+                </TextView>
+
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent">
+                </TextView>
+
+                <TextView
+                    android:background="@color/gray3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="11sp"
+                    android:padding="1dp"
+                    android:text="精选农产品">
+                </TextView>
+
+            </LinearLayout>
+
+            <RelativeLayout
+
+                android:id="@+id/home_item_goodslayout"
+                android:layout_below="@+id/home_item_goodcontent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/home_item_goodPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥50"
+                    android:textColor="@color/red3"
+                    android:textSize="18sp"></TextView>
+
+                <TextView
+                    android:id="@+id/home_item_goodValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/home_item_goodPrice"
+                    android:text="￥100"
+                    android:textColor="@color/gray0"
+                    android:textSize="13sp">
+                </TextView>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/home_item_goodSale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/home_item_goodslayout"
+                android:layout_marginLeft="80dp"
+                android:text="220条购买记录"
+                android:textColor="@color/gray0"
+                android:textSize="13sp">
+            </TextView>
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

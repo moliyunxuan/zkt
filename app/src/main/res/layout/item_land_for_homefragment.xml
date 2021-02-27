@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_height="wrap_content"
+    android:layout_width="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <!-- 图片Layout -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingRight="10dp">
+
+            <ImageView
+                android:id="@+id/home_item_landimg"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@mipmap/tomato"
+                android:scaleType="fitXY"/>
+        </LinearLayout>
+
+        <!-- 商品信息Layout -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+            <!--土地名-->
+            <TextView
+                android:id="@+id/home_item_landname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+
+                android:text="重庆合川区生态种植园"
+                android:textColor="@color/black"
+                android:textSize="11sp"/>
+
+            <!--适合种植作物 -->
+            <TextView
+                android:id="@+id/home_item_landplant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="番茄 | 西瓜 | 玉米 | 辣椒"
+                android:lines="4"
+                android:textColor="@color/gray0"
+                android:textSize="8sp"/>
+
+            <!--土地单价-->
+            <TextView
+                android:id="@+id/home_item_landprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="￥480元起"
+                android:textColor="@color/red3"
+                android:textSize="11sp"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

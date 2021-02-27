@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="5dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="5dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="4dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="2dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:padding="12dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/item_land_photo"
+            android:layout_width="match_parent"
+            android:scaleType="center"
+            android:layout_height="210dp"
+            android:src="@mipmap/goods_detail_img">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/item_land_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            tools:text="稻田种植示范基地"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="18sp">
+        </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/item_land_tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="价格："
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textSize="13sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/item_land_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="￥5000"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/red1"
+                android:textStyle="bold"
+                android:textSize="18sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/item_land_tv2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="  元起"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textSize="13sp">
+            </TextView>
+
+            <Button
+                android:id="@+id/item_land_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="选择土地">
+            </Button>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

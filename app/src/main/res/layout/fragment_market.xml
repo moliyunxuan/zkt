@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/material_blue"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="商城列表"
+            android:textColor="@color/white"
+            android:textSize="18sp">
+        </TextView>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_category"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:ignore="NestedWeights" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <!--翻页公告-->
+            <com.sunfusheng.marqueeview.MarqueeView
+                android:id="@+id/vf_hotmessage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/white"
+                android:paddingBottom="4dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="25dp"
+                android:paddingTop="4dp"
+
+                app:mvFont="@font/calibri"
+
+                app:mvAnimDuration="1000"
+                app:mvDirection="bottom_to_top"
+                app:mvInterval="3000"
+                app:mvSingleLine="true" />
+
+            <com.cjj.MaterialRefreshLayout
+                android:id="@+id/refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="12"
+                app:overlay="false"
+                app:progress_colors="@array/material_colors"
+                app:progress_show_circle_backgroud="false"
+                app:wave_height_type="higher"
+                app:wave_show="false">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_wares"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" />
+
+            </com.cjj.MaterialRefreshLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

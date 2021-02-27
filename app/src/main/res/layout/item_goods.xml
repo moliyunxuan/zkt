@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/item_goods_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/goodsimg"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                android:id="@+id/item_goods_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_marginLeft="10dp"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/calibri"
+                android:text="新鲜玉米水果玉米"
+                android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/item_goods_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="甜玉米鲜玉米棒8斤装爆浆玉米粒甜脆可生吃"
+                    android:textSize="13sp"
+                    android:textColor="@color/gray0"
+                    android:ellipsize="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:maxLines="2">
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/item_goods_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0"
+                        android:text="￥168"
+                        android:textColor="@color/red3"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:id="@+id/item_goods_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="7dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="[250]"
+                        android:textColor="@color/gray2"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/item_goods_sale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="7dp"
+                        android:layout_weight="0"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:singleLine="true"
+                        android:text="52人付款"
+                        android:textColor="@color/gray2"
+                        android:textSize="13sp"/>
+
+                </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray0" />
+
+</LinearLayout>

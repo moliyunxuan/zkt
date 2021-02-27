@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:layout_marginLeft="18dp"
+    android:layout_marginRight="18dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="1dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="常用功能"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="25dp"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/calibri">
+            </TextView>
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_below="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/firstLine"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_me_land"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:text="我的土地" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_me_pick"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:text="认养订单" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_me_take"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:text="领劵" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_me_service"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:text="服务订单" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/firstLine">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_me_shoppingcar"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:text="购物车" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_me_store"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:text="全部店铺" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_me_farm"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:text="农场入驻" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_me_question"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:text="常见问题" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
