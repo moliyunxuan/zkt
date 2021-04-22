@@ -16,10 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.zkt.R;
+import com.example.zkt.activity.CommunityActivity;
 import com.example.zkt.activity.GoodsDetailsActivity;
 import com.example.zkt.activity.LandDetailActivity;
 import com.example.zkt.adapter.HotGridViewAdapter;
@@ -76,6 +78,9 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.recommend_progress)
     ProgressBar recommendProgressBar;
 
+    @BindView(R.id.community_ll)
+    LinearLayout communityLinearLayout;
+
     /**
      * 一次请求到分页土地数据
      */
@@ -127,6 +132,12 @@ public class HomeFragment extends Fragment {
         // 刷新监听。
         mRefreshLayout.setOnRefreshListener(mRefreshListener);
 
+        communityLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), CommunityActivity.class));
+            }
+        });
 
         return view;
     }
