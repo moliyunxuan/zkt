@@ -90,6 +90,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private AVUser avUser;
     //图片网址
     private  String avatar;
+    //当前登录用户手机号码
+    public String  mobilePhoneNumber;
+    //当前登录用户
+    private AVObject User;
 
 
     private static final String IMAGE_FILE_CROP_NAME = "temp_crop_head_image.jpg";
@@ -109,13 +113,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             nickName.setText(avUser.getString("nickName"));
         }
 
-        String mobilePhoneNumber = avUser.getMobilePhoneNumber();
+         mobilePhoneNumber = avUser.getMobilePhoneNumber();
         AVQuery<AVObject> query = new AVQuery<>("_User");
         query.whereEqualTo("mobilePhoneNumber",mobilePhoneNumber);
         query.getFirstInBackground().subscribe(new Observer<AVObject>() {
             public void onSubscribe(Disposable disposable) {}
 
             public void onNext(AVObject todo) {
+                User = todo;
                 Toast.makeText(getActivity(),"成功找到用户"+mobilePhoneNumber,Toast.LENGTH_SHORT).show();
                 Log.d("msg", "找到用户： "+mobilePhoneNumber);
                  avatar = todo.getAVFile("avatar").getUrl();
@@ -126,16 +131,19 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(),"無法找到用户"+mobilePhoneNumber,Toast.LENGTH_SHORT).show();
                 Log.d("msg", "失敗原因： "+throwable);
             }
-            public void onComplete() {}
+            public void onComplete() {
+                Log.d("msgll", "找到头像，网址为： "+avatar);
+                GlideUtils.portrait(getActivity(),avatar,headImage);
+            }
         });
         //通过AvUser的手机号码查询对应的User
         //通过User查询用户头像的url
         //能够获取到用户头像的url，但不能正常显示
         //初步判断头像是用的是CircleImageView
         //建议使用setImageBitmap
-       //headImage.setImageBitmap(returnBitMap(avatar));
+        //headImage.setImageBitmap(returnBitMap(avatar));
         //headImage.setImageURI(Uri.parse(avatar));
-        headImage.setImageBitmap(new BitMapUtil().returnBitMap(avatar));
+        //headImage.setImageBitmap(new BitMapUtil().returnBitMap(avatar));
         headImage.setOnClickListener(this);
         return view;
     }
@@ -297,19 +305,39 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     String userId = avUser.getObjectId();
                     AVFile file = new AVFile("avatar"+userId,saveBitmapFile(bitMap));
 
+                    final AVFile[] myFile = new AVFile[1];
                     file.saveInBackground().subscribe(new Observer<AVFile>() {
                         public void onSubscribe(Disposable disposable) {}
                         public void onNext(AVFile avFile) {
                             System.out.println("文件保存完成。objectId：" + file.getObjectId());
-//                            avUser.put("avatar",avFile);
-//                            avUser.save();
+                            myFile[0] = avFile;
+
                         }
                         public void onError(Throwable throwable) {
                             // 保存失败，可能是文件无法被读取，或者上传过程中出现问题
 
                         }
-                        public void onComplete() {}
+                        public void onComplete() {
+                            User.put("avatar",myFile[0]);
+                            // 将对象保存到云端
+                            User.saveInBackground().subscribe(new Observer<AVObject>() {
+                                public void onSubscribe(Disposable disposable) {}
+                                public void onNext(AVObject todo) {
+                                    // 成功保存之后，执行其他逻辑
+                                    System.out.println("保存成功。objectId：" + todo.getObjectId());
+                                }
+                                public void onError(Throwable throwable) {
+                                    // 异常处理
+                                }
+                                public void onComplete() {}
+                            });
+
+
+                        }
                     });
+                    // 为属性赋值
+
+
                 }
                 break;
 
