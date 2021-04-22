@@ -134,7 +134,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         //初步判断头像是用的是CircleImageView
         //建议使用setImageBitmap
        //headImage.setImageBitmap(returnBitMap(avatar));
-       // headImage.setImageBitmap(new BitMapUtil().returnBitMap(avatar));
+        //headImage.setImageURI(Uri.parse(avatar));
+        headImage.setImageBitmap(new BitMapUtil().returnBitMap(avatar));
         headImage.setOnClickListener(this);
         return view;
     }
