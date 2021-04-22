@@ -83,6 +83,7 @@ public class GoodsDetailsActivity extends AppCompatActivity implements ObserverS
         setViewWithIntentData();
         initScrollViewListener();
         showIsFavor();
+
     }
 
     private void initView() {

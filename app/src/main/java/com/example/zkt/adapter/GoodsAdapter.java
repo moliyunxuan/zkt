@@ -17,9 +17,6 @@ import java.util.List;
 public class GoodsAdapter extends BaseQuickAdapter<Goods, BaseViewHolder> {
 
 
-
-
-
     public GoodsAdapter(@Nullable List<Goods> datas) {
 
         super(R.layout.item_goods,datas);

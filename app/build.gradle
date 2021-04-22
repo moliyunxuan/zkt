@@ -114,4 +114,16 @@ dependencies {
     implementation 'com.youth.banner:banner:2.1.0'
 
 
+
+
+    //社区九宫格图片加载
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    //添加社区下拉刷新库
+    implementation 'com.malinskiy:superrecyclerview:1.1.4'
+    //json 解析
+    implementation 'com.alibaba:fastjson:1.2.9'
+
+
+
 }

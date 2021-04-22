@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/editTextBodyLl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFDCDCDC"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:visibility="gone">
+
+    <EditText
+        android:id="@+id/comment_et"
+        style="@style/PublicEditViewStyle"
+        android:layout_marginRight="5dip"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="说几句吧"
+        android:imeOptions="actionSend"
+        android:maxLength="250"
+        android:maxLines="3" />
+
+    <Button
+        android:id="@+id/comment_send"
+        android:layout_width="60dp"
+        android:layout_height="34dp"
+        android:background="@drawable/btn_green_bg"
+        android:clickable="true"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="发送"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+</LinearLayout>
