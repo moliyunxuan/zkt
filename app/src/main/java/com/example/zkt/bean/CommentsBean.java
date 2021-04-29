@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class CommentsBean implements Serializable {
     private int commentId; //评论id
     private String content;//评论内容
+    private String nikename;
     private SenderBean sender;//评论者信息
 
     public SenderBean getToReplyUser() {
@@ -32,6 +33,15 @@ public class CommentsBean implements Serializable {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public String getNikename() {
+        return nikename;
+    }
+
+    public void setNikename(String nikename) {
+        this.nikename = nikename;
+    }
+
 
     public SenderBean getSender() {
         return sender;

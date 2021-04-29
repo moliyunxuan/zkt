@@ -7,6 +7,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,11 +122,17 @@ public class CommentListView extends LinearLayout {
         final CircleMovementMethod circleMovementMethod = new CircleMovementMethod(itemSelectorColor, itemSelectorColor);
 
         final CommentsBean bean = mDatas.get(position);
+        //String name = bean.getNikename();
         String name = bean.getSender().getUsername();
         String id = String.valueOf(bean.getSender().getId());
+
+        Log.d("msg11","name="+name);
+        Log.d("msg11","id="+id);
+
         String toReplyName = "";
         if (bean.getToReplyUser() != null) {
             toReplyName = bean.getToReplyUser().getUsername();
+            Log.d("msg11","toReplyName="+toReplyName);
         }
         SpannableStringBuilder builder = new SpannableStringBuilder();
         builder.append(setClickableSpan(name, id));

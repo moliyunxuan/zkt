@@ -16,10 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.zkt.MainActivity;
 import com.example.zkt.R;
 import com.example.zkt.activity.CommunityActivity;
 import com.example.zkt.activity.GoodsDetailsActivity;
@@ -58,6 +60,12 @@ public class HomeFragment extends Fragment {
 
     @BindView(R.id.bannertop)//上下滚动的轮播文字
     Banner mbannertop;
+
+    @BindView(R.id.iv_plant)  //农场认种
+     ImageView iv_plant;
+
+    @BindView(R.id.iv_shop)  //农场商城
+     ImageView iv_shop;
 
 
     @BindView(R.id.hot_gridview)  //热评土地
@@ -127,6 +135,26 @@ public class HomeFragment extends Fragment {
         unbinder = ButterKnife.bind(this,view);
 
         initBanner();
+
+        //iv_plant农场认领跳转
+        iv_plant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity)getActivity();
+                mainActivity.jumpPageFragment(R.id.item_2);
+            }
+        });
+
+        //iv_shop农场商城跳转
+        iv_shop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity)getActivity();
+                mainActivity.jumpPageFragment(R.id.item_3);
+
+            }
+        });
+
 
 
         // 刷新监听。

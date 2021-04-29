@@ -53,7 +53,7 @@
     <!-- 标题样式 -->
     <style name="titleStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_height">54dp</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:background">@drawable/title_bg</item>
     </style>

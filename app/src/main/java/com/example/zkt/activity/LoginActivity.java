@@ -3,12 +3,15 @@ package com.example.zkt.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +19,9 @@ import com.example.zkt.MainActivity;
 import com.example.zkt.R;
 import com.example.zkt.bean.Category;
 import com.example.zkt.bean.Goods;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.leancloud.AVLogger;
 import cn.leancloud.AVOSCloud;
@@ -34,6 +40,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText et_psw;
     private TextView tv_register;
     private Button btn_login;
+    private Switch sw_remember_pwd;
+    private SharedPreferences loginPreference;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +63,24 @@ public class LoginActivity extends AppCompatActivity {
         et_psw = (EditText)findViewById(R.id.met_pwd);
         btn_login = (Button) findViewById(R.id.btn_login);
         tv_register = (TextView) findViewById(R.id.tv_register);
+
+        //隐藏密码
+        et_psw.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+        //记住密码
+        loginPreference = getSharedPreferences("login", MODE_PRIVATE);
+        ///要通过loginPreference去记录三个参数（checked，userName，password）
+        boolean cheched = loginPreference.getBoolean("checked", false);
+        if (cheched) {
+            Map<String, Object> m = readLogin();
+            if (m != null) {
+                et_userPhone.setText((CharSequence) m.get("userName"));
+                et_psw.setText((CharSequence) m.get("password"));
+                sw_remember_pwd.setChecked(cheched);
+            }
+        }
+
+
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +95,37 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * 记住密码用
+     * 读登录信息
+     * @returnMap<String, Object>
+     */
+    public Map<String, Object> readLogin() {
+        Map<String, Object> m = new HashMap<>();
+        String userName = loginPreference.getString("userName", "");
+        String password = loginPreference.getString("password", "");
+        m.put("userName", userName);
+        m.put("password", password);
+        return m;
+    }
+
+    /**
+     * 记住密码用，用于记录保存的数据
+     * @param checked
+     */
+    public void configLoginInfo(boolean checked) {
+        SharedPreferences.Editor editor = loginPreference.edit();
+        editor.putBoolean("checked", sw_remember_pwd.isChecked());
+        if (checked) {
+            editor.putString("userName", et_userPhone.getText().toString());
+            editor.putString("password", et_psw.getText().toString());
+        } else {
+            editor.remove("userName").remove("password");
+        }
+        editor.commit();
+    }
+
 
     private void login() {
         final String userphone = et_userPhone.getText().toString();

@@ -40,6 +40,7 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 
+
 public class MarketFragment extends BaseFragment {
 
     private boolean isclick = false;
@@ -61,6 +62,7 @@ public class MarketFragment extends BaseFragment {
     @BindView(R.id.vf_hotmessage)
     MarqueeView mVfHotMessage;
 
+    private long current_cid;//左侧Category分类，用于保证只点击一次
 
 
     private CategoryAdapter mCategoryAdapter;
@@ -145,13 +147,19 @@ public class MarketFragment extends BaseFragment {
                 String Cname = category.getCname();
                 isclick = true;
                 defaultClick();
-                requestWares(cid);
+                if(current_cid !=  cid){
+                    requestWares(cid);
+                    current_cid = cid;
+                }
+
             }
         });
         mRecyclerView.setAdapter(mCategoryAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        if (getActivity() != null) {
+            mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        }
     }
 
     /**

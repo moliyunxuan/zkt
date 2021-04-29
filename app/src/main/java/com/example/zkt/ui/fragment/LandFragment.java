@@ -42,7 +42,8 @@ import io.reactivex.disposables.Disposable;
  * Log.d("hint","topNewsAdapter" + (new ViewPagerAdapter(getFragmentManager(),0,pageFragment) == null));// 返回false,表明topNewsAdapter 不为空
  * Log.d("hint","mViewPager" + (viewPager == null));// 返回false,表明mViewPager 不为空
  */
-public class LandFragment extends Fragment {
+public class
+LandFragment extends Fragment {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;

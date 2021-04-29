@@ -11,6 +11,7 @@ import com.example.zkt.bean.PraiseBean;
 import com.example.zkt.bean.SenderBean;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 
 import java.util.ArrayList;
@@ -113,6 +114,28 @@ public class DataTest {
         return list;
     }
 
+    public static DynamicBean getDynamicByDate(String json) {
+        DynamicBean circle = null;
+        if (json != null) {
+            try {
+
+                    circle = JSON.parseObject(json, DynamicBean.class);
+                    //忽略不包含内容和图片的推文
+
+                    circle.setId(circleId++);
+                    circle.setPraiseList(createPraiseItemList());
+                    circle.setDt(String.valueOf(System.currentTimeMillis()));
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return circle;
+    }
+
+
+
 
     public static List<DynamicBean> getCircleDyData(String json) {
         if (json != null) {
@@ -121,6 +144,7 @@ public class DataTest {
                 circleList = new ArrayList<>();
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject jsonObject = array.getJSONObject(i);
+
                     DynamicBean circle = JSON.parseObject(jsonObject.toString(), DynamicBean.class);
                     //忽略不包含内容和图片的推文
                     if (TextUtils.isEmpty(circle.getContent()) && (circle.getImages() == null || circle.getImages().size() == 0)) {

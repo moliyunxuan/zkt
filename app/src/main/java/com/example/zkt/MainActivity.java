@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private FragmentManager fragmentManager;
     private RelativeLayout rl_content;
+    private  int current_frag;
+
     @BindView(R.id.bottomNavigationView)
     BottomNavigationView bottomNavigationView;
     Unbinder unbinder;
@@ -67,22 +69,29 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void changePageFragment(int itemId) {
+        if (current_frag == itemId) return;
         switch (itemId) {
             case R.id.item_1: {
                 FragmentTransaction transaction = fragmentManager.beginTransaction();//创建一个事务
                 transaction.replace(R.id.rl_content, new HomeFragment());
+                current_frag = itemId;
+                bottomNavigationView.getMenu().getItem(1).setChecked(true);
                 transaction.commit();//事务一定要提交，replace才会有效
                 break;
             }
             case R.id.item_2: {
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.rl_content, new LandFragment());
+                current_frag = itemId;
+                bottomNavigationView.getMenu().getItem(1).setChecked(true);
                 transaction.commit();
                 break;
             }
             case R.id.item_3: {
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.rl_content, new MarketFragment());
+                current_frag = itemId;
+                bottomNavigationView.getMenu().getItem(2).setChecked(true);
                 transaction.commit();
                 break;
             }
@@ -90,6 +99,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.rl_content, new MineFragment());
+                current_frag = itemId;
+                bottomNavigationView.getMenu().getItem(3).setChecked(true);
                 transaction.commit();
                 break;
             }
@@ -98,4 +109,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         }
     }
+
+    //用于Fragment中跳转用
+    public void jumpPageFragment(int itemId){
+        changePageFragment(itemId);
+    }
+
 }

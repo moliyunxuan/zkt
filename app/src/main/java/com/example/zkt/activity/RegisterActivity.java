@@ -56,6 +56,13 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    //重写onPause()用于返回登陆界面
+    @Override
+    protected void onPause() {
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        super.onPause();
+    }
+
 
 
     private void initview() {

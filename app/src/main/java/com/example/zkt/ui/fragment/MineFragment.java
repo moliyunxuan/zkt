@@ -109,6 +109,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
         avUser = AVUser.getCurrentUser();
 
+        User user = AVUser.cast(avUser, com.example.zkt.bean.User.class);
+
         if(avUser!=null) {
             nickName.setText(avUser.getString("nickName"));
         }
@@ -133,7 +135,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             }
             public void onComplete() {
                 Log.d("msgll", "找到头像，网址为： "+avatar);
-                GlideUtils.portrait(getActivity(),avatar,headImage);
+                if (getActivity() != null) {
+                    GlideUtils.portrait(getActivity(), avatar, headImage);
+                }
             }
         });
         //通过AvUser的手机号码查询对应的User
@@ -147,6 +151,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         headImage.setOnClickListener(this);
         return view;
     }
+
 
 
 

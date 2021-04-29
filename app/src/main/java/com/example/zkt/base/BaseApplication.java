@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
+import android.os.Trace;
 
 import com.example.zkt.bean.Category;
 import com.example.zkt.bean.Goods;
@@ -20,6 +21,7 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import java.io.File;
 
 import cn.leancloud.AVObject;
+import io.reactivex.plugins.RxJavaPlugins;
 
 public class BaseApplication extends Application {
 
@@ -43,6 +45,8 @@ public class BaseApplication extends Application {
 
 
     }
+
+
 
     public static Context getContext() {
         return context;

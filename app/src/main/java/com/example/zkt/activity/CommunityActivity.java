@@ -26,7 +26,9 @@ import com.example.zkt.adapter.CommunityAdapter;
 import com.example.zkt.bean.CommentConfig;
 import com.example.zkt.bean.CommentsBean;
 import com.example.zkt.bean.DynamicBean;
+import com.example.zkt.bean.ImageBean;
 import com.example.zkt.bean.PraiseBean;
+import com.example.zkt.bean.SenderBean;
 import com.example.zkt.keyboard.KeyboardUtility;
 import com.example.zkt.ui.widget.CommentListView;
 import com.example.zkt.ui.widget.DivItemDecoration;
@@ -36,13 +38,23 @@ import com.malinskiy.superrecyclerview.SuperRecyclerView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import cn.leancloud.AVObject;
+import cn.leancloud.AVQuery;
+
+import cn.leancloud.json.JSONObject;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import static com.example.zkt.util.DataTest.createPraiseItemList;
+import static com.example.zkt.util.DataTest.getDynamicByDate;
 
 /**
  * author：moliyunxuan
@@ -70,6 +82,7 @@ public class CommunityActivity extends AppCompatActivity implements CommunityAda
     private RelativeLayout topTitle;
     private OkHttpClient mHttpClient;
     private List<DynamicBean> list;
+    private List<AVObject> Dynamics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,8 +194,7 @@ public class CommunityActivity extends AppCompatActivity implements CommunityAda
 
     /**
      * 更新数据，区分是上拉还是下拉
-     *
-     * @param loadType
+     *  @param loadType
      * @param datas
      */
     public void updateLoadData(int loadType, List<DynamicBean> datas) {
@@ -190,7 +202,7 @@ public class CommunityActivity extends AppCompatActivity implements CommunityAda
             recyclerView.setRefreshing(false);
             adapter.setDatas(datas);
         } else if (loadType == TYPE_PULL_REFRESHMORE) {//加载底部更多
-            adapter.getDatas().addAll(datas.subList(0, 5));//取5条
+            adapter.getDatas().addAll(datas.subList(0, 3));//取5条
         }
         adapter.notifyDataSetChanged();
         if (null != adapter.getDatas() && adapter.getDatas().size() > 0) {
@@ -424,8 +436,9 @@ public class CommunityActivity extends AppCompatActivity implements CommunityAda
     private int getListViewOffset(CommentConfig commentConfig) {
         if (commentConfig == null)
             return 0;
+
         //这里如果你的listview上面还有其它占高度的控件，则需要减去该控件高度，listview的headview除外。
-        //int listviewOffset = mScreenHeight - mSelectCircleItemH - mCurrentKeyboardH - mEditTextBodyHeight;
+        //int listviewOffset = mStcreenHeight - mSelectCircleItemH - mCurrentKeyboardH - mEditTextBodyHeight;
         int listviewOffset = screenHeight - selectCircleItemH - currentKeyboardH - editTextBodyHeight - topTitle.getHeight();
         if (commentConfig.commentType == CommentConfig.Type.REPLY) {
             //回复评论的情况
@@ -439,26 +452,135 @@ public class CommunityActivity extends AppCompatActivity implements CommunityAda
      * 获取列表数据
      */
     public void getTweetListData() {
-        String url = "http://thoughtworks-ios.herokuapp.com/user/jsmith/tweets";
-        mHttpClient = new OkHttpClient();
-        Request request = new Request.Builder().url(url).build();
-        mHttpClient.newCall(request).enqueue(new Callback() {
+
+
+        AVQuery<AVObject> query = new AVQuery<>("DynamicBean");
+        query.findInBackground().subscribe(new Observer<List<AVObject>>() {
             @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d("msg","获取数据失败"+e);
+            public void onSubscribe(Disposable d) {
 
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String json = response.body().string();
-                Log.d("msg","获取数据成功");
-                if (json != null) {
-                    Log.d("okHttp", json);
-                    list = DataTest.getCircleDyData(json);
+            public void onNext(List<AVObject> avObjects) {
+                Dynamics = avObjects;
+
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+
+                ArrayList<DynamicBean> dynamicList = new ArrayList<>();
+
+                int circleId = 0;
+                for (AVObject avObject : Dynamics) {
+
+                    DynamicBean circle = new DynamicBean();
+                    SenderBean senderBean = new SenderBean();
+
+                    List<CommentsBean> commentsBeans = new ArrayList<>();
+                    List<ImageBean> imageBeans = new ArrayList<>();
+                    List<PraiseBean> praiseBeans = new ArrayList<>();
+
+
+                    JSONObject sender = avObject.getJSONObject("sender");
+                    String Sendernickname = sender.getString("nickname");
+                    Log.d("msg1", "" + Sendernickname);
+                    String SenderAvatar = sender.getString("avatar");
+                    String content = avObject.getString("content");
+
+                    List comments = avObject.getList("comments");
+                    for (int i = 0; i < comments.size(); i++) {
+                        CommentsBean commentsBean = new CommentsBean();
+                        HashMap<Object, Object> comment = (HashMap<Object, Object>) comments.get(i);
+                        SenderBean commentman = new SenderBean();
+                        Log.d("msg", "" + comment.get("content"));
+                        commentsBean.setContent((String) comment.get("content"));
+                        commentman.setUsername((String) comment.get("nikename"));
+
+                        Log.d("msg11","查询到的评论名字"+ comment.get("nikename"));
+                        commentman.setId((String) comment.get("id"));
+                        commentsBean.setSender(commentman);
+                        commentsBeans.add(commentsBean);
+                    }
+
+                    List images = avObject.getList("images");
+                    for(int i=0;i<images.size();i++) {
+                        ImageBean imageBean = new ImageBean();
+                        String image = (String) images.get(i);
+                        Log.d("msg2", ""+image);
+                        imageBean.setUrl(image);
+                        imageBeans.add(imageBean);
+                    }
+                    List praiseMans = avObject.getList("praiseMans");
+                    for(int i=0;i<praiseMans.size();i++) {
+                        PraiseBean praiseBean = new PraiseBean();
+                        SenderBean praiseMan = new SenderBean();
+                        praiseMan.setUsername((String) praiseMans.get(i));
+                        praiseBean.setSenderBean(praiseMan);
+                        praiseBeans.add(praiseBean);
+                    }
+
+
+
+
+                    senderBean.setNick(Sendernickname);
+                    senderBean.setAvatar(SenderAvatar);
+
+                    circle.setId(circleId++);
+                    circle.setSender(senderBean);
+                    circle.setContent(content);
+                    circle.setComments(commentsBeans);
+                    circle.setImages(imageBeans);
+                    circle.setDt(String.valueOf(System.currentTimeMillis()));
+                    circle.setPraiseList(praiseBeans);
+
+                    dynamicList.add(circle);
                 }
+                list = dynamicList;
             }
         });
+//
+//    public void getTweetListData() {
+//        String url = "http://thoughtworks-ios.herokuapp.com/user/jsmith/tweets";
+//        mHttpClient = new OkHttpClient();
+//        Request request = new Request.Builder().url(url).build();
+//        mHttpClient.newCall(request).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                Log.d("msg","获取数据失败"+e);
+//
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                String json = response.body().string();
+//                Log.d("msg","获取数据成功");
+//                if (json != null) {
+//                    Log.d("okHttp", json);
+//                    Log.d("msg",""+json);
+//                    list = DataTest.getCircleDyData(json);
+//                    Log.d("msg121",""+list);
+//                }
+//            }
+//        });
+//    }
+
     }
+
 }
+
+
+
+
+
+
+
 

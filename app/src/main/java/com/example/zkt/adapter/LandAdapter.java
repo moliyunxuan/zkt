@@ -11,6 +11,7 @@ import com.example.zkt.util.GlideUtils;
 import java.util.List;
 
 import cn.leancloud.AVObject;
+import cn.leancloud.AVQuery;
 
 
 public class LandAdapter extends BaseQuickAdapter<AVObject, BaseViewHolder>{
@@ -25,6 +26,9 @@ public class LandAdapter extends BaseQuickAdapter<AVObject, BaseViewHolder>{
     @Override
     protected void convert(BaseViewHolder helper, AVObject item) {
         // ImageView imageView = helper.getView(R.id.item_land_photo);
+
+        AVQuery avQuery = new AVQuery("_USer");
+
 
         GlideUtils.load(mContext,item.getAVFile("lpicture").getUrl(),(ImageView) helper
                 .getView(R.id.item_land_photo));
