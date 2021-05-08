@@ -3,6 +3,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="shop_title">购物车(%s)</string>
+    <string name="count_money">合计：￥%s</string>
+    <string name="count_goods">结算（%s）</string>
     <string name="message_jiehsao">
   【认养流程】\n
      1.认养下单\n

@@ -2,6 +2,7 @@ package com.example.zkt;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -17,6 +18,8 @@ import com.example.zkt.ui.fragment.MarketFragment;
 import com.example.zkt.ui.fragment.MineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -29,7 +32,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private FragmentManager fragmentManager;
     private RelativeLayout rl_content;
-    private  int current_frag;
+    //当前Fragment位置
+    private  int position;
+
+    //fragment集合
+    private ArrayList<Fragment> fragmentlist;
+    //当前Fragment
+    private Fragment current_frag;
 
     @BindView(R.id.bottomNavigationView)
     BottomNavigationView bottomNavigationView;
@@ -52,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void initialize() {
         bottomNavigationView.setOnNavigationItemSelectedListener(this);//设置 NavigationItemSelected 事件监听
         //  BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);//改变 BottomNavigationView 默认的效果
+        fragmentlist= new ArrayList<Fragment>();
+        fragmentlist.add(new HomeFragment());
+        fragmentlist.add(new LandFragment());
+        fragmentlist.add(new MarketFragment());
+        fragmentlist.add(new MineFragment());
         //选中第一个item,对应第一个fragment
         bottomNavigationView.setSelectedItemId(R.id.item_1);
     }
@@ -69,45 +83,70 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void changePageFragment(int itemId) {
-        if (current_frag == itemId) return;
+
         switch (itemId) {
             case R.id.item_1: {
-                FragmentTransaction transaction = fragmentManager.beginTransaction();//创建一个事务
-                transaction.replace(R.id.rl_content, new HomeFragment());
-                current_frag = itemId;
-                bottomNavigationView.getMenu().getItem(1).setChecked(true);
-                transaction.commit();//事务一定要提交，replace才会有效
+                position = 0;
                 break;
             }
             case R.id.item_2: {
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.rl_content, new LandFragment());
-                current_frag = itemId;
-                bottomNavigationView.getMenu().getItem(1).setChecked(true);
-                transaction.commit();
+                position = 1;
                 break;
             }
             case R.id.item_3: {
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.rl_content, new MarketFragment());
-                current_frag = itemId;
-                bottomNavigationView.getMenu().getItem(2).setChecked(true);
-                transaction.commit();
+                position = 2;
                 break;
             }
             case R.id.item_4: {
-
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.rl_content, new MineFragment());
-                current_frag = itemId;
-                bottomNavigationView.getMenu().getItem(3).setChecked(true);
-                transaction.commit();
+                position = 3;
                 break;
             }
             default:
+                position = 0;
                 break;
 
         }
+        Fragment next_frag = getFragment();
+        switchFragment(current_frag,next_frag);
+    }
+
+    //获取当前Fragment
+    private Fragment getFragment() {
+        Fragment fragment = fragmentlist.get(position);
+        return  fragment;
+    }
+
+    /**
+     *切换Fragemnt
+     * 用于保证不多生成Fragemnt
+     */
+
+    private Fragment switchFragment(Fragment fromFragment,Fragment toFragment){
+        if(fromFragment != toFragment){
+            //将当前Fragment设置为toFragment
+            current_frag = toFragment;
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            //切换
+            // 判断toFragment有没有被添加
+            if(!toFragment.isAdded()){
+                if(fromFragment != null){
+                    transaction.hide(fromFragment);
+                }
+                if(toFragment !=null){
+                    transaction.add(R.id.rl_content,toFragment).commit();
+                }
+            }else{
+                if(fromFragment != null){
+                    transaction.hide(fromFragment);
+                }
+                if(toFragment !=null){
+                    transaction.show(toFragment).commit();
+                }
+
+            }
+        }
+        bottomNavigationView.getMenu().getItem(position).setChecked(true);
+        return toFragment;
     }
 
     //用于Fragment中跳转用

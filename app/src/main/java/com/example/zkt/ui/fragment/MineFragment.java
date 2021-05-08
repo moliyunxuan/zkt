@@ -36,6 +36,8 @@ import com.example.zkt.BuildConfig;
 import com.example.zkt.MainActivity;
 import com.example.zkt.R;
 import com.example.zkt.activity.ClipImageActivity;
+import com.example.zkt.activity.GoodsDetailsActivity;
+import com.example.zkt.activity.ShoppingCarActivity;
 import com.example.zkt.bean.User;
 import com.example.zkt.ui.widget.CircleImageView;
 import com.example.zkt.util.BitMapUtil;
@@ -95,6 +97,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     //当前登录用户
     private AVObject User;
 
+    private TextView shoppingCar;
+
 
     private static final String IMAGE_FILE_CROP_NAME = "temp_crop_head_image.jpg";
 
@@ -106,6 +110,16 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         headImage = view.findViewById(R.id.iv_userinfo_pic);
         nickName=view.findViewById(R.id.tv_userinfo_name);
+        shoppingCar = view.findViewById(R.id.tv_shoppingCar);
+        shoppingCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ShoppingCarActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         avUser = AVUser.getCurrentUser();
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -59,29 +60,29 @@ public class HomeFragment extends Fragment {
     Banner mBanner;
 
     @BindView(R.id.bannertop)//上下滚动的轮播文字
-    Banner mbannertop;
+            Banner mbannertop;
 
     @BindView(R.id.iv_plant)  //农场认种
-     ImageView iv_plant;
+            ImageView iv_plant;
 
     @BindView(R.id.iv_shop)  //农场商城
-     ImageView iv_shop;
+            ImageView iv_shop;
 
 
     @BindView(R.id.hot_gridview)  //热评土地
-    GridView hotProductGridView;
+            GridView hotProductGridView;
 
     @BindView(R.id.recommend_gridview)//推荐商品
-    GridView recommendProductGridView;
+            GridView recommendProductGridView;
 
     @BindView(R.id.refresh_layout) //下拉刷新的layout
-    SwipeRefreshLayout mRefreshLayout;
+            SwipeRefreshLayout mRefreshLayout;
 
     /**
      * 热评和推荐的两个进度条
      */
     @BindView(R.id.hot_progress)
-     ProgressBar hotProgressBar;
+    ProgressBar hotProgressBar;
 
     @BindView(R.id.recommend_progress)
     ProgressBar recommendProgressBar;
@@ -121,6 +122,22 @@ public class HomeFragment extends Fragment {
     private Unbinder unbinder;
     private View view;
 
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            if(msg.what == 1) {
+                landItem = (List<Land>) msg.obj;
+            }
+            if(msg.what == 2) {
+                goodsItem = (List<Goods>) msg.obj;
+            }
+
+            showList();
+
+        }
+    };
+
 
 
     @Override
@@ -135,6 +152,8 @@ public class HomeFragment extends Fragment {
         unbinder = ButterKnife.bind(this,view);
 
         initBanner();
+
+        initList();
 
         //iv_plant农场认领跳转
         iv_plant.setOnClickListener(new View.OnClickListener() {
@@ -180,7 +199,7 @@ public class HomeFragment extends Fragment {
 
             //获取商品分页数据
             initList();
-            showList();
+//            showList();
             //判断刷新动画
             if (mRefreshLayout.isRefreshing()) {
                 //停止动画
@@ -201,10 +220,10 @@ public class HomeFragment extends Fragment {
         hotProductGridView.setAdapter(hotLandGridViewAdapter);
         //设置gridview点击事件
         hotProductGridView.setOnItemClickListener((parent, view, position, id) -> {
-                       Intent intent = new Intent(getActivity(), LandDetailActivity.class);
-                       //将对应的土地id传到详情界面
-                      intent.putExtra("ObjectId", listItemHot.get(position).getObjectId());
-                      startActivity(intent);
+            Intent intent = new Intent(getActivity(), LandDetailActivity.class);
+            //将对应的土地id传到详情界面
+            intent.putExtra("ObjectId", listItemHot.get(position).getObjectId());
+            startActivity(intent);
         });
         //停止显示热评商品加载动画，显示商品信息
         hotProgressBar.setVisibility(View.GONE);
@@ -248,7 +267,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onNext(List<Land> lands) {
                 Log.d("hint","主页获取土地数据成功");
-                landItem = lands;
+//                landItem = lands;
+                Message msg = Message.obtain();
+                msg.what = 1;
+                msg.obj = lands;
+                //4、发送消息
+                handler.sendMessage(msg);
             }
             @Override
             public void onError(Throwable e) {
@@ -270,7 +294,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onNext(List<Goods> goods) {
                 Log.d("hint","主页获取商品数据成功");
-                goodsItem = goods;
+//                goodsItem = goods;
+                Message msg = Message.obtain();
+                msg.what = 2;
+                msg.obj = goods;
+                //4、发送消息
+                handler.sendMessage(msg);
 
 
             }

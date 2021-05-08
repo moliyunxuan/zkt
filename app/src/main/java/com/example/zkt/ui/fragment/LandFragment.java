@@ -122,7 +122,14 @@ LandFragment extends Fragment {
         public CharSequence getPageTitle(int position) {
             return fragmentList.get(position).getTitle();
         }
+
+        @Override
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+         //   super.destroyItem(container, position, object);
+        }
     }
+
+
 
 
 }

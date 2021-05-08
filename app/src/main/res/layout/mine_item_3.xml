@@ -97,6 +97,7 @@
             android:layout_below="@+id/firstLine">
 
             <TextView
+                android:id="@+id/tv_shoppingCar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

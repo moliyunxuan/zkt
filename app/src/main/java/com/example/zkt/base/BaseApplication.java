@@ -10,6 +10,9 @@ import com.example.zkt.bean.Category;
 import com.example.zkt.bean.Goods;
 import com.example.zkt.bean.Land;
 import com.example.zkt.bean.User;
+import com.example.zkt.data.DBHelper;
+import com.example.zkt.data.http.VollyHelperNew;
+import com.example.zkt.util.ToastHelper;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
@@ -43,7 +46,29 @@ public class BaseApplication extends Application {
         registSubClass();
         initImageLoader();
 
+        initVollyHelper();
+//        initSharePreferenceUtil();
+        initToastHelper();
+        initDBHelper();
 
+    }
+
+    private void initDBHelper() {
+        DBHelper.init(getApplicationContext());
+    }
+
+
+
+    private void initVollyHelper() {
+        VollyHelperNew.getInstance().initVollyHelper(getApplicationContext());
+    }
+
+//    private void initSharePreferenceUtil() {
+//        SharePreferenceUtilNew.getInstance().init(getApplicationContext());
+//    }
+
+    private void initToastHelper() {
+        ToastHelper.getInstance().init(getApplicationContext());
     }
 
 

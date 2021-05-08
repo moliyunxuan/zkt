@@ -63,6 +63,9 @@ public class LoginActivity extends AppCompatActivity {
         et_psw = (EditText)findViewById(R.id.met_pwd);
         btn_login = (Button) findViewById(R.id.btn_login);
         tv_register = (TextView) findViewById(R.id.tv_register);
+        sw_remember_pwd = findViewById(R.id.sw_remember_pwd);
+
+
 
         //隐藏密码
         et_psw.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -84,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                configLoginInfo(sw_remember_pwd.isChecked());
                 login();
             }
         });

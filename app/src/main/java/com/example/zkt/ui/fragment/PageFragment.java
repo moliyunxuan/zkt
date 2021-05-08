@@ -3,12 +3,15 @@ package com.example.zkt.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,19 +41,31 @@ public class PageFragment extends Fragment {
 
     private RecyclerView recyclerView;
 
-
-
     private List<AVObject> datas;
     private LandAdapter mLandAdapter;
 
     String title;
+    private View view;
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            if(msg.what == 1) {
+                datas = (List<AVObject>) msg.obj;
+            }
+            init(view);
+            Log.e("Land","查询土地种类为 "+datas.get(0).toJSONString()+" 的土地成功");
+        }
+    };
+
+
+
 
 
     public PageFragment() {
 
     }
-
-
 
 
     public static PageFragment newInstance(String title) {
@@ -71,29 +86,29 @@ public class PageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_page, container, false);
+//        if(mView != null){
+//            return mView;
+//        }
+        view = inflater.inflate(R.layout.fragment_page, container, false);
         recyclerView = view.findViewById(R.id.page_rv);
         getLand();
-        init(view);
+//        init(view);
 
         return view;
     }
 
     private void init(View view) {
-
+        Log.e("Land","查询土地种类为 "+datas.get(0).toJSONString()+" 的土地成功");
         mLandAdapter = new LandAdapter(datas);
         mLandAdapter.setOnItemClickListener(new BaseQuickAdapter
                 .OnItemClickListener() {
-
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
-
                 AVObject land = (AVObject) adapter.getData().get(position);
                 Intent intent = new Intent();
                 intent.putExtra("ObjectId",land.getObjectId());
                 intent.setClass(getContext(), LandDetailActivity.class);
-               startActivity(intent);
+                startActivity(intent);
             }
         });
 
@@ -119,8 +134,14 @@ public class PageFragment extends Fragment {
             @Override
             public void onNext(List<AVObject> lands) {
                 Log.d("hint","查询土地种类为 "+title+" 的土地成功");
-                datas=lands;
+//                datas=lands;
+                Message msg = Message.obtain();
+                msg.what = 1;
+                msg.obj = lands;
+                //4、发送消息
+                handler.sendMessage(msg);
 
+//                Log.e("Land","查询土地种类为 "+datas.get(0).toJSONString()+" 的土地成功");
             }
 
             @Override
@@ -147,4 +168,6 @@ public class PageFragment extends Fragment {
         super.onDestroyView();
 
     }
+
+
 }
