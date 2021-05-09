@@ -19,8 +19,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".activity.EventDetailActivity"></activity>
-        <activity android:name=".activity.EventActivity" />
+        <activity android:name=".activity.AnimalActivity"></activity>
+        <activity android:name=".activity.AddressAddActivity" />
+        <activity android:name=".activity.AddressListActivity" />
+        <activity android:name=".activity.CreateOrderActivity" />
         <activity android:name=".activity.CommunityActivity" />
         <activity android:name=".activity.ShoppingCarActivity" />
         <activity android:name=".activity.ClipImageActivity" />

@@ -1,8 +1,11 @@
 package com.example.zkt.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
+import android.media.Image;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zkt.R;
+import com.example.zkt.activity.CreateOrderActivity;
 import com.example.zkt.mvp.model.ShoppingCartBean;
 import com.example.zkt.mvp.biz.OnShoppingCartChangeListener;
 import com.example.zkt.mvp.biz.ShoppingCartBiz;
@@ -170,7 +174,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
         holder.tvDel.setTag(groupPosition + "," + childPosition);
         holder.tvDel.setTag(groupPosition + "," + childPosition);
 
-        Log.d("msg","商品图片"+goods.getGoodsLogo());
+
         GlideUtils.load(mContext,goods.getGoodsLogo(),holder.goodsImg);
         //holder.goodsImg.setImageURI(Uri.parse(goods.getGoodsLogo()));
 
@@ -209,7 +213,24 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
                 case R.id.tvEditAll:
                     break;
                 case R.id.btnSettle:
+                    //结算，调转到CreaateActivity,生成订单表
                     if (ShoppingCartBiz.hasSelectedGoods(mListGoods)) {
+                        String[] infos = ShoppingCartBiz.getShoppingCount(mListGoods);
+                        String Totalmoney =infos[1];
+                        ArrayList<String> shoppingImages = ShoppingCartBiz.getShoppingImage(mListGoods);
+                        Intent intent = new Intent();
+                        intent.setClass(mContext,CreateOrderActivity.class);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("Totalmoney",Totalmoney);
+                        bundle.putStringArrayList("shoppingImages",shoppingImages);
+                        intent.putExtras(bundle);
+                        mContext.startActivity(intent);
+
+
+
+
+
                         Toast.makeText(mContext,"结算跳转",Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(mContext,"亲，先选择商品！",Toast.LENGTH_SHORT).show();

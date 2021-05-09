@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/animal_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="动物认养"
+        android:fontFamily="@font/yuan"
+        android:textColor="@color/black"
+        android:textSize="20sp">
+
+    </TextView>
+
+
+    <com.example.zkt.ui.widget.SwipeCardRecyclerView
+        android:layout_below="@+id/animal_bar"
+        android:id="@+id/recyclerView"
+        android:layout_marginTop="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="356dp"
+        android:layout_height="426dp">
+    </com.example.zkt.ui.widget.SwipeCardRecyclerView>
+
+  <TextView
+      android:layout_below="@+id/recyclerView"
+      android:layout_width="match_parent"
+      android:layout_marginTop="20dp"
+      android:layout_height="200dp"
+      android:text="自己认养，从农场直接到餐桌"
+      android:textSize="20sp"
+      android:layout_marginBottom="20dp"
+      android:gravity="center_horizontal"
+      android:textColor="@color/white"
+      android:background="@drawable/animal_bg">
+
+  </TextView>
+
+</RelativeLayout>

@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.zkt.MainActivity;
 import com.example.zkt.R;
+import com.example.zkt.activity.AnimalActivity;
 import com.example.zkt.activity.CommunityActivity;
 import com.example.zkt.activity.GoodsDetailsActivity;
 import com.example.zkt.activity.LandDetailActivity;
@@ -67,6 +68,8 @@ public class HomeFragment extends Fragment {
 
     @BindView(R.id.iv_shop)  //农场商城
             ImageView iv_shop;
+    @BindView(R.id.iv_breed) //动物认养
+            ImageView iv_breed;
 
 
     @BindView(R.id.hot_gridview)  //热评土地
@@ -161,6 +164,15 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 MainActivity mainActivity = (MainActivity)getActivity();
                 mainActivity.jumpPageFragment(R.id.item_2);
+            }
+        });
+
+        iv_breed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), AnimalActivity.class);
+                startActivity(intent);
             }
         });
 

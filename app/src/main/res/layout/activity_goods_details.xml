@@ -284,8 +284,8 @@
             android:id="@+id/detail_layout_buy_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="立即购买"
-            android:textSize="17sp"
+            android:text="加入购物车"
+            android:textSize="16sp"
             android:textColor="@color/white"
             android:background="@color/red3"/>
         </LinearLayout>

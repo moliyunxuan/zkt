@@ -135,6 +135,27 @@ public class ShoppingCartBiz {
         return infos;
     }
 
+    /**
+     * 获取结算时选中的商品
+     *
+     */
+
+    public static ArrayList<String> getShoppingImage(List<ShoppingCartBean> listGoods) {
+        ArrayList<String> shoppingImages = new ArrayList<>();
+
+        for (int i = 0; i < listGoods.size(); i++) {
+            for (int j = 0; j < listGoods.get(i).getGoods().size(); j++) {
+                boolean isSelectd = listGoods.get(i).getGoods().get(j).isChildSelected();
+                if (isSelectd) {
+
+                    String shoppingImage = listGoods.get(i).getGoods().get(j).getGoodsLogo();
+                    shoppingImages.add(shoppingImage);
+                }
+            }
+        }
+        return shoppingImages;
+    }
+
 
     public static boolean hasSelectedGoods(List<ShoppingCartBean> listGoods) {
         String count = getShoppingCount(listGoods)[0];

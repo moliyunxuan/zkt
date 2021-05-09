@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="356dp"
+    android:layout_height="426dp"
+    android:background="@drawable/img_card_background"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.example.zkt.ui.widget.RoundImageView
+            android:id="@+id/iv_animal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            app:radius="7.5dp"
+            android:src="@drawable/img_animal_01" />
+
+        <TextView
+            android:id="@+id/tv_kind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@id/iv_animal"
+            android:text="找块田自营"
+            android:background="@drawable/kind"
+            android:textColor="@color/red3"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_animal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="60dp"
+            android:text="农家土鸡"
+            android:textSize="16sp"
+            android:fontFamily="@font/yuan"
+            android:textColor="@color/black">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_batch"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_above="@id/tv_time"
+            android:layout_toRightOf="@id/tv_name"
+            android:background="@drawable/batchstyle"
+            android:gravity="center"
+            android:layout_marginLeft="11dp"
+            android:text="第1期"
+            android:fontFamily="@font/yuan"
+            android:textSize="10sp"
+            android:textColor="@color/red3">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_name"
+            android:layout_toRightOf="@id/iv_animal"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"
+            android:text="2021/01/14~2021/02/28"
+
+            android:textSize="10sp"
+            android:textColor="@color/gray1">
+        </TextView>
+
+        <com.example.zkt.ui.widget.SaleProgressView
+            android:id="@+id/spv"
+            android:layout_below="@+id/iv_animal"
+            android:layout_marginTop="20dp"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            app:nearOverText="即将售罄"
+            app:overText="已经售罄" />
+
+        <ImageView
+            android:id="@+id/iv_spiece"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/spv"
+            android:src="@drawable/spiece">
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spv"
+            android:layout_toRightOf="@id/iv_spiece"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:text="品种"
+            android:textSize="14sp"
+            android:textColor="@color/gray1">
+        </TextView>
+        <TextView
+            android:id="@+id/tv_specie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_spiece"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:text="鸡"
+            android:textSize="16sp"
+            android:textColor="@color/black">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/iv_cycle"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/spv"
+            android:src="@drawable/cycle">
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spv"
+            android:layout_toRightOf="@id/iv_cycle"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:text="周期"
+            android:textSize="14sp"
+            android:textColor="@color/gray1">
+        </TextView>
+        <TextView
+            android:id="@+id/tv_cycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_cycle"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="150dp"
+            android:text="180天"
+            android:textSize="16sp"
+            android:textColor="@color/black">
+        </TextView>
+
+
+        <ImageView
+            android:id="@+id/iv_output"
+            android:layout_marginLeft="260dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/spv"
+            android:src="@drawable/output">
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spv"
+            android:layout_toRightOf="@id/iv_output"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:text="产量"
+            android:textSize="14sp"
+            android:textColor="@color/gray1">
+        </TextView>
+        <TextView
+            android:id="@+id/tv_output"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_cycle"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="265dp"
+            android:text="2.5KG"
+            android:textSize="16sp"
+            android:textColor="@color/black">
+        </TextView>
+
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingLeft="14dp"
+        android:paddingTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:text="128"
+            android:textColor="@color/red3"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_price"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+
+            android:gravity="center"
+            android:text="元/只"
+            android:textColor="@color/gray3"
+            android:textSize="14sp" />
+        <ImageView
+            android:id="@+id/avatars"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/tv_price"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/avatars">
+        </ImageView>
+
+
+
+        <TextView
+            android:id="@+id/tv_sale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_age"
+            android:layout_toRightOf="@+id/avatars"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="已有3719人参与认养"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

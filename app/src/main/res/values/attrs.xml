@@ -42,6 +42,27 @@
         <attr name="ratio" format="float" />
     </declare-styleable>
 
+    <declare-styleable name="EnjoyshopToolBar">
+        <attr name="rightButtonIcon" format="reference"/>
+        <attr name="isShowSearchView" format="boolean"/>
+        <attr name="isShowLeftIcon" format="boolean"/>
+        <attr name="rightButtonText" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="radius" format="reference|dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="SaleProgressView">
+        <attr name="sideColor" format="color" />
+        <attr name="textColor" format="color" />
+        <attr name="sideWidth" format="dimension" />
+        <attr name="overText" format="string" />
+        <attr name="nearOverText" format="string" />
+        <attr name="textSize" format="dimension" />
+        <attr name="isNeedAnim" format="boolean" />
+    </declare-styleable>
+
 
 
 

@@ -9,32 +9,17 @@
     android:fitsSystemWindows="true"
     android:clipToPadding="true">
 
-    <RelativeLayout
-        android:layout_height="60dp"
-        android:layout_width="match_parent"
-        android:background="@color/material_blue">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="新建收件地址"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="@color/white">
 
-        </TextView>
-        <TextView
-            android:id="@+id/item_save_for_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="保存"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:textSize="18sp"
-            android:textColor="@color/white">
-        </TextView>
-    </RelativeLayout>
+    <com.example.zkt.ui.widget.EnjoyshopToolBar
+        android:id="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/material_blue"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetEnd="56dp"
+        app:rightButtonText="保存"
+        app:title="新建收件地址"
+        />
 
 
     <LinearLayout

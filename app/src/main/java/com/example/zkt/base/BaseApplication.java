@@ -2,17 +2,22 @@ package com.example.zkt.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.os.Trace;
 
 import com.example.zkt.bean.Category;
+
 import com.example.zkt.bean.Goods;
 import com.example.zkt.bean.Land;
-import com.example.zkt.bean.User;
 import com.example.zkt.data.DBHelper;
+import com.example.zkt.data.dao.DaoMaster;
+import com.example.zkt.data.dao.DaoSession;
+import com.example.zkt.data.dao.User;
 import com.example.zkt.data.http.VollyHelperNew;
 import com.example.zkt.util.ToastHelper;
+import com.example.zkt.util.UserLocalData;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
@@ -36,6 +41,14 @@ public class BaseApplication extends Application {
 
 
 
+    private User user;
+    private static BaseApplication mInstance;
+
+    private        DaoMaster.DevOpenHelper mHelper;
+    private SQLiteDatabase db;
+    private        DaoMaster               mDaoMaster;
+    private static DaoSession mDaoSession;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -51,7 +64,61 @@ public class BaseApplication extends Application {
         initToastHelper();
         initDBHelper();
 
+        setDatabase();
+
     }
+
+    /**
+     * 设置greenDao
+     */
+    private void setDatabase() {
+        // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。
+        // 可能你已经注意到了，你并不需要去编写「CREATE TABLE」这样的 SQL 语句，因为 greenDAO 已经帮你做了。
+        // 注意：默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。
+        // 所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。
+        mHelper = new DaoMaster.DevOpenHelper(this, "shop-db", null);
+        db = mHelper.getWritableDatabase();
+        // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。
+        mDaoMaster = new DaoMaster(db);
+        mDaoSession = mDaoMaster.newSession();
+    }
+
+    public static DaoSession getDaoSession() {
+        return mDaoSession;
+    }
+
+
+    private void initUser() {
+        this.user = UserLocalData.getUser(this);
+    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void putUser(User user, String token) {
+        this.user = user;
+        UserLocalData.putUser(this, user);
+        UserLocalData.putToken(this, token);
+    }
+
+    public void clearUser() {
+        this.user = null;
+        UserLocalData.clearUser(this);
+        UserLocalData.clearToken(this);
+    }
+
+    public static BaseApplication getApplication() {
+        return mInstance;
+    }
+
+    public static BaseApplication getInstance() {
+        return mInstance;
+    }
+
+
+
 
     private void initDBHelper() {
         DBHelper.init(getApplicationContext());
@@ -102,4 +169,6 @@ public class BaseApplication extends Application {
                 .build();
         ImageLoader.getInstance().init(config);
     }
+
+
 }
