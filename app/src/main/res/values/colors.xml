@@ -33,6 +33,7 @@
     <color name="transparent">#00000000</color>
     <color name="default_clickable_color">#cccccc</color>
     <color name="click_bg">#e9e9e9</color>
+    <color name="T_mini_black">#bd000000</color>
 
 
 </resources>

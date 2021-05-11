@@ -2,13 +2,14 @@ package com.example.zkt.activity;
 
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.graphics.Paint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,9 +23,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.zkt.R;
 import com.example.zkt.adapter.GoodsCommentAdapter;
+
+
 import com.example.zkt.databinding.ActivityLandDetailBinding;
 import com.example.zkt.ui.fragment.ExplainFragment;
 import com.example.zkt.ui.fragment.InformaticaFragment;
+import com.example.zkt.ui.widget.PopupWindowCheckChoose;
 import com.example.zkt.util.ButtonClickUtils;
 import com.example.zkt.util.DensityUtils;
 import com.example.zkt.util.GlideUtils;
@@ -41,6 +45,7 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import lsp.scrollchooseview.ScrollChooseView;
 
 
 public class LandDetailActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener, View.OnClickListener {
@@ -76,6 +81,23 @@ public class LandDetailActivity extends AppCompatActivity implements AppBarLayou
     private ImageView mLandPhoto;         //土地照片
     private TextView mTvLandPrice;         //商品价格
 
+    private TextView tv_time;
+    private ImageView iv_time;
+    private RelativeLayout rl_content;
+    private TextView tv_buy;
+    private ImageView iv_service;
+
+
+    private PopupWindowCheckChoose mPopup;
+    private ArrayList<String> mList=new ArrayList();
+
+    private ScrollChooseView scrollChooseView;
+    String titles[] = new String[]{"无托管", "半托管", "全托管"};
+    private int picIds[] = new int[]{
+            R.mipmap.land_no, R.mipmap.land_half,
+            R.mipmap.land_all
+    };
+
 
 
     @Override
@@ -86,6 +108,14 @@ public class LandDetailActivity extends AppCompatActivity implements AppBarLayou
         mTvDescription = findViewById(R.id.txt_product_des);
         mTvLandPrice = findViewById(R.id.txt_price);
         mLandPhoto = findViewById(R.id.land_detail_img);
+        rl_content = findViewById(R.id.rl_content_land);
+        iv_time = findViewById(R.id.image_alawys);
+        tv_time = findViewById(R.id.tv_time_land);
+        scrollChooseView = (ScrollChooseView) findViewById(R.id.id_scv);
+        tv_buy = (TextView) findViewById(R.id.tv_buy) ;
+        iv_service = (ImageView) findViewById(R.id.image_service);
+
+
 
 
         setListener();
@@ -96,9 +126,61 @@ public class LandDetailActivity extends AppCompatActivity implements AppBarLayou
         mImmersionBar = ImmersionBar.with(this).statusBarDarkFont(true);
         mImmersionBar.init();
         initProduct();
+        iv_service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(),IntroduceActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        //选择服务种类
+       scrollChooseView.setTitles(titles);
+        scrollChooseView.setPicIds(picIds);
+        scrollChooseView.setOnScrollEndListener(new ScrollChooseView.OnScrollEndListener() {
+            @Override
+            public void currentPosition(int position) {
+                Log.d("msg", "当前positin=" + position + " " + titles[position]);
+            }
+        });
+
+
+        mList=getPopList();
+        mPopup = new PopupWindowCheckChoose(this, mList);
+        mPopup.setTagTxt("选择租赁周期")//设置顶部title的内容
+                .setButtomTxt("取消")//设置底部按钮内容
+                .setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);//单选
+
+        rl_content.setOnClickListener(v -> {
+            mPopup.showPop(tv_time);
+        });
+
+        //单选
+        mPopup.setOnEventLisenter(positionList -> {
+            mPopup.dismiss();
+            tv_time.setText(mList.get(positionList.get(0)));
+        });
+
+        tv_buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(),LandOrderActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
+
+    /**
+     * 弹窗数据
+     *
+     * @return
+     */
+
 
     @SuppressLint("ClickableViewAccessibility")
     private void setListener() {
@@ -228,6 +310,14 @@ public class LandDetailActivity extends AppCompatActivity implements AppBarLayou
             measure(binding.appBar.getTotalScrollRange());
         });
 
+    }
+
+    public ArrayList<String> getPopList() {
+        ArrayList<String> popList = new ArrayList<>();
+        popList.add("一季度（90天）");
+        popList.add("半年");
+        popList.add("一年");
+        return popList;
     }
 
     private void measure(int total) {

@@ -14,9 +14,7 @@
         android:minHeight="?attr/actionBarSize"
         app:contentInsetEnd="56dp"
         app:isShowLeftIcon="true"
-        app:title="填写订单"
-        >
-    </com.example.zkt.ui.widget.EnjoyshopToolBar>
+        app:title="填写订单"></com.example.zkt.ui.widget.EnjoyshopToolBar>
 
     <ScrollView
         android:layout_width="match_parent"

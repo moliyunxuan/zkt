@@ -159,8 +159,9 @@
                         android:layout_height="@dimen/dp_10"
                         android:background="@color/gray4" />
 
-                    <!--常见问题-->
+                    <!--租赁周期-->
                     <RelativeLayout
+                        android:id="@+id/rl_content_land"
                         android:layout_width="match_parent"
                         android:layout_height="40dp">
 
@@ -169,17 +170,19 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/dp_10"
-                            android:text="常见问题 (126)"
+                            android:text="租赁周期"
+                            android:textStyle="bold"
                             android:textColor="@color/black"
                             android:textSize="@dimen/sp_14" />
 
                         <TextView
+                            android:id="@+id/tv_time_land"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="9dp"
                             android:layout_toLeftOf="@+id/image_alawys"
-                            android:text="查看全部"
+                            android:text="一季度（90天）"
                             android:textColor="@color/material_blue"
                             android:textSize="13sp" />
 
@@ -199,7 +202,55 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_10"
                         android:background="@color/gray4" />
-                    <!--顾客评论-->
+                    <!--块地服务-->
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp">
+
+                        <TextView
+                            android:id="@+id/title_landService"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="块地服务"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_14" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="9dp"
+                            android:layout_toLeftOf="@+id/image_service"
+                            android:layout_marginTop="10dp"
+                            android:text="了解特权"
+                            android:textColor="@color/gray1"
+                            android:textSize="13sp" />
+
+                        <ImageView
+                            android:id="@+id/image_service"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="13dp"
+                            android:layout_marginRight="15dp"
+                            android:src="@mipmap/xiangyou_grey" />
+
+                        <!--选择服务种类（全托管、无托管、半托管）-->
+
+                        <lsp.scrollchooseview.ScrollChooseView
+                            android:id="@+id/id_scv"
+                            android:layout_below="@+id/title_landService"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"/>
+
+                    </RelativeLayout>
+
+
+                    <!--评论-->
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_40">
@@ -209,7 +260,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/dp_10"
-                            android:text="顾客评论 (1265)"
+                            android:text="顾客评论（1265）"
                             android:textColor="@color/black"
                             android:textSize="@dimen/sp_14" />
 
@@ -220,7 +271,7 @@
                             android:layout_marginRight="9dp"
                             android:layout_toLeftOf="@+id/image_comments"
                             android:text="查看全部"
-                            android:textColor="@color/material_blue"
+                            android:textColor="@color/gray1"
                             android:textSize="13sp" />
 
                         <ImageView
@@ -234,6 +285,7 @@
 
 
                     </RelativeLayout>
+
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerViewComment"
@@ -637,6 +689,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/tv_buy"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

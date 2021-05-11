@@ -19,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".activity.AnimalActivity"></activity>
+        <activity android:name=".activity.IntroduceActivity"></activity>
+        <activity android:name=".activity.LandOrderActivity" />
+        <activity android:name=".activity.AnimalActivity" />
         <activity android:name=".activity.AddressAddActivity" />
         <activity android:name=".activity.AddressListActivity" />
         <activity android:name=".activity.CreateOrderActivity" />

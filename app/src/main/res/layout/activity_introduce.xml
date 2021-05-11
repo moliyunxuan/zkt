@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:widget="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.IntroduceActivity">
+    <RelativeLayout
+        android:id="@+id/rl_introduce"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/green">
+
+        <com.shehuan.niv.NiceImageView
+            android:id="@+id/intro_land_image"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="25dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/intro_bg"
+            app:border_color="#FF7F24"
+            app:border_width="1dp"
+            app:corner_top_left_radius="15dp"
+            app:corner_bottom_right_radius="15dp"
+            app:corner_bottom_left_radius="15dp"
+            app:corner_top_right_radius="15dp"
+            app:is_cover_src="true"
+            app:is_circle="false" />
+        <TextView
+            android:id="@+id/intro_land_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/intro_land_image"
+            android:text="稻田种植示范基地"
+            android:textColor="@color/white"
+            android:fontFamily="@font/yuan"
+            android:textSize="18sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/intro_land_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/intro_land_name"
+            android:layout_toRightOf="@+id/intro_land_image"
+            android:text="无托管"
+            android:textColor="@color/gray3"
+            android:textSize="12sp">
+        </TextView>
+    </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_tedian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/rl_introduce"
+            android:text="服务特点"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16sp">
+        </TextView>
+
+        <com.example.zkt.ui.widget.HorizontalListView
+            android:id="@+id/hlv"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_below="@+id/tv_tedian"
+            android:layout_marginTop="15dp"
+            android:fadingEdgeLength="0dp"
+            android:requiresFadingEdge="horizontal"
+            android:divider="@color/white"
+            widget:dividerWidth="1dp" />
+
+    <TextView
+        android:id="@+id/tv_item1_intro"
+        android:layout_below="@+id/hlv"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/gray3" />
+
+    <TextView
+        android:id="@+id/tv_leixing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/tv_item1_intro"
+        android:text="服务类型"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp">
+    </TextView>
+    <FrameLayout
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_leixing"
+        android:id="@+id/service_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"/>
+
+</RelativeLayout>

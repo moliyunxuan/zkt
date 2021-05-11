@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <!-- 输入框的圆角矩形背景 两边圆角-->
+    <corners android:topLeftRadius="18dp"
+        android:topRightRadius="18dp"/>
+    <solid android:color="@color/white"/>
+</shape>

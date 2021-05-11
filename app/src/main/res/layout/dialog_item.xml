@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:orientation="vertical"
+    android:background="#E9E9E9">
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textColor="@drawable/dialog_tv_text_color"
+        android:textSize="14sp"
+        android:background="@drawable/dialog_tv_bg"/>
+</LinearLayout>

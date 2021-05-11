@@ -139,5 +139,10 @@ dependencies {
 
 
 
+    implementation 'com.github.SheHuan:NiceImageView:1.0.5'
+
+    compile 'com.github.superSp:ScrollChooseView:v1.0.2'
+
+
 
 }

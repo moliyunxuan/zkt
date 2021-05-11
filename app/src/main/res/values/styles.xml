@@ -118,6 +118,16 @@
         <item name="android:singleLine">true</item>
     </style>
 
+    <!-- title底部边界线顏色 -->
+    <style name="view_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">#dddddd</item>
+    </style>
 
-
+    <!--popwidnow 显示消失动画 -->
+    <style name="pop_anim_style">
+        <item name="android:windowEnterAnimation">@anim/pop_anim_enter_bottom</item> <!-- 指定显示的动画xml -->
+        <item name="android:windowExitAnimation">@anim/pop_anim_exit_bottom</item> <!-- 指定消失的动画xml -->
+    </style>
 </resources>

@@ -68,7 +68,7 @@ public class SaleProgressView extends View {
 
     private void initAttrs(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SaleProgressView);
-        sideColor = ta.getColor(R.styleable.SaleProgressView_sideColor,0xffff3c32);
+        sideColor = ta.getColor(R.styleable.SaleProgressView_sideColor,0X00C774);
         textColor = ta.getColor(R.styleable.SaleProgressView_textColor,0xffff3c32);
         sideWidth = ta.getDimension(R.styleable.SaleProgressView_sideWidth,dp2px(2));
         overText = ta.getString(R.styleable.SaleProgressView_overText);
