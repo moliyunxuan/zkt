@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
+//import com.bumptech.glide.request.RequestOptions;
 import com.example.zkt.R;
 
 public class GlideUtils {
@@ -19,13 +19,19 @@ public class GlideUtils {
      */
     public static void load(Context context, String url, ImageView iv) {
 
-        RequestOptions options = new RequestOptions()
+        Glide.with(context)
+                .load(url)
                 .placeholder(R.drawable.company_logo)
-                .error(R.drawable.default_head)
-                .dontAnimate()
-                .diskCacheStrategy(DiskCacheStrategy.NONE);
+                .error(R.drawable.company_logo)
+                .into(iv);
 
-        Glide.with(context).load(url).apply(options).into(iv);
+//        RequestOptions options = new RequestOptions()
+//                .placeholder(R.drawable.company_logo)
+//                .error(R.drawable.company_logo)
+//                .dontAnimate()
+//                .diskCacheStrategy(DiskCacheStrategy.NONE);
+//
+//        Glide.with(context).load(url).apply(options).into(iv);
     }
 
     /**
@@ -37,17 +43,23 @@ public class GlideUtils {
      */
     public static void portrait(Context context, String url, ImageView iv) {
 
-        RequestOptions options = new RequestOptions()
-                .placeholder(R.drawable.company_logo)
-                .error(R.drawable.default_head)
-                .dontAnimate()
-                .diskCacheStrategy(DiskCacheStrategy.NONE);
+//        RequestOptions options = new RequestOptions()
+//                .placeholder(R.drawable.company_logo)
+//                .error(R.drawable.default_head)
+//                .dontAnimate()
+//                .diskCacheStrategy(DiskCacheStrategy.NONE);
+//
+//        if (TextUtils.isEmpty(url)) {
+//            Glide.with(context).load(R.drawable.default_head).apply(options).into(iv);
+//        } else {
+//            Glide.with(context).load(url).apply(options).into(iv);
+//        }
 
-        if (TextUtils.isEmpty(url)) {
-            Glide.with(context).load(R.drawable.default_head).apply(options).into(iv);
-        } else {
-            Glide.with(context).load(url).apply(options).into(iv);
-        }
+        Glide.with(context)
+                .load(url)
+                .placeholder(R.drawable.company_logo)
+                .error(R.drawable.company_logo)
+                .into(iv);
     }
 
 }

@@ -103,7 +103,8 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
 
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
+//    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
 
     //FlowHelper 可以帮助您迅速构建Tab，比如热搜、搜索记录、与ViewPager搭配的工具类
     implementation 'com.github.LillteZheng.FlowHelper:tablibx:v1.27'
@@ -142,6 +143,16 @@ dependencies {
     implementation 'com.github.SheHuan:NiceImageView:1.0.5'
 
     compile 'com.github.superSp:ScrollChooseView:v1.0.2'
+
+    //上传图片选择框架
+    implementation 'me.iwf.photopicker:PhotoPicker:0.9.5@aar'
+
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+    //日志框架
+    implementation 'com.orhanobut:logger:1.15'
+    //OKGO网络请求框架
+    implementation 'com.lzy.net:okgo:3.0.4'
 
 
 

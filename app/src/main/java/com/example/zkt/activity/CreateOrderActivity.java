@@ -16,6 +16,7 @@ import com.example.zkt.R;
 import com.example.zkt.adapter.GoodsOrderAdapter;
 import com.example.zkt.bean.OrderBean;
 import com.example.zkt.ui.widget.FullyLinearLayoutManager;
+import com.facebook.drawee.gestures.GestureDetector;
 import com.yuruiyin.appbarlayoutbehavior.LogUtil;
 
 import java.util.ArrayList;
@@ -73,6 +74,17 @@ public class CreateOrderActivity extends AppCompatActivity implements View.OnCli
         ButterKnife.bind(this);
         showData();
         initView();
+        mBtnCreateOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(),PayActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("data", TotalMoney);
+                intent.putExtra("bun", bundle);
+                startActivity(intent);
+            }
+        });
 
 
 

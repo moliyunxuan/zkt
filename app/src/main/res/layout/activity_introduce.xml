@@ -12,22 +12,22 @@
         android:layout_height="120dp"
         android:background="@color/green">
 
-        <com.shehuan.niv.NiceImageView
-            android:id="@+id/intro_land_image"
-            android:layout_width="80dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="25dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/intro_bg"
-            app:border_color="#FF7F24"
-            app:border_width="1dp"
-            app:corner_top_left_radius="15dp"
-            app:corner_bottom_right_radius="15dp"
-            app:corner_bottom_left_radius="15dp"
-            app:corner_top_right_radius="15dp"
-            app:is_cover_src="true"
-            app:is_circle="false" />
+<!--        <com.shehuan.niv.NiceImageView-->
+<!--            android:id="@+id/intro_land_image"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:layout_marginLeft="25dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:src="@drawable/intro_bg"-->
+<!--            app:border_color="#FF7F24"-->
+<!--            app:border_width="1dp"-->
+<!--            app:corner_top_left_radius="15dp"-->
+<!--            app:corner_bottom_right_radius="15dp"-->
+<!--            app:corner_bottom_left_radius="15dp"-->
+<!--            app:corner_top_right_radius="15dp"-->
+<!--            app:is_cover_src="true"-->
+<!--            app:is_circle="false" />-->
         <TextView
             android:id="@+id/intro_land_name"
             android:layout_width="wrap_content"

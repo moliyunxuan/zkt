@@ -47,6 +47,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+import cn.leancloud.AVObject;
+import cn.leancloud.AVQuery;
+import cn.leancloud.AVUser;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+
 import static com.example.zkt.R.id.commentList;
 /**
  * author：moliyunxuan
@@ -118,8 +124,38 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
         if (getItemViewType(position) == TYPE_HEAD) {
             //  此处可处理头部数据
             HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
-            imageLoader.displayImage(TextUtils.isEmpty(DataTest.curUser.getAvatar()) ? "" : DataTest.curUser.getAvatar(), headerViewHolder.imageViewHead, options);
-            headerViewHolder.tvNickName.setText(DataTest.curUser.getNick());
+//           imageLoader.displayImage(TextUtils.isEmpty(DataTest.curUser.getAvatar()) ? "" : DataTest.curUser.getAvatar(), headerViewHolder.imageViewHead, options);
+//            headerViewHolder.tvNickName.setText(DataTest.curUser.getNick());
+
+
+            String mobilePhoneNumber = AVUser.getCurrentUser().getMobilePhoneNumber();
+            AVQuery<AVObject> query = new AVQuery<>("_User");
+            query.whereEqualTo("mobilePhoneNumber",mobilePhoneNumber);
+            query.getFirstInBackground().subscribe(new Observer<AVObject>() {
+                @Override
+                public void onSubscribe(Disposable d) {
+
+                }
+
+                @Override
+                public void onNext(AVObject avObject) {
+
+                    imageLoader.displayImage(TextUtils.isEmpty(avObject.getAVFile("avatar").getUrl()) ? "" : avObject.getAVFile("avatar").getUrl(), headerViewHolder.imageViewHead, options);
+                    headerViewHolder.tvNickName.setText( avObject.getString("nickName"));
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+
+
         } else {
             final int circlePosition = position - HEADVIEW_SIZE;
             commonPosition = circlePosition;
@@ -206,7 +242,8 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
             this.userPicture.setTag(circlePosition + "");
             if (null != DynamicBean.getSender()) {
                 imageLoader.displayImage(TextUtils.isEmpty(DynamicBean.getSender().getAvatar()) ? "" : DynamicBean.getSender().getAvatar(), this.userPicture, options);
-                this.usernameTxt.setText(DynamicBean.getSender().getUsername());
+                this.usernameTxt.setText(DynamicBean.getSender().getNick());
+
             }
             String dateSource = DynamicBean.getDt();
             this.time.setText(DateUtils.getModularizationDate(Long.parseLong(dateSource)));

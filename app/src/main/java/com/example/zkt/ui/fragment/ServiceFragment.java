@@ -38,7 +38,6 @@ public class ServiceFragment extends Fragment
             {
                 GlideUtils.load(getContext(),serviceBean.getService(),service);
 
-
             }
         });
         return view;

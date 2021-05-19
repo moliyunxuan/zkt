@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -83,12 +85,21 @@ public class CommunityActivity extends AppCompatActivity implements CommunityAda
     private OkHttpClient mHttpClient;
     private List<DynamicBean> list;
     private List<AVObject> Dynamics;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commmunity);
         this.init();
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent();
+                intent.setClass(getApplicationContext(),CreateDynamicActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void init() {
@@ -99,6 +110,8 @@ public class CommunityActivity extends AppCompatActivity implements CommunityAda
     }
 
     private void initModule() {
+
+        this.imageView = findViewById(R.id.iv_add_dynamic);
         this.recyclerView = (SuperRecyclerView) findViewById(R.id.community_recyclerView);
         this.editTextBody = (LinearLayout) findViewById(R.id.editTextBodyLl);
         this.editText = (EditText) findViewById(R.id.comment_et);
@@ -455,6 +468,8 @@ public class CommunityActivity extends AppCompatActivity implements CommunityAda
 
 
         AVQuery<AVObject> query = new AVQuery<>("DynamicBean");
+        // 按 createdAt 降序排列
+        query.orderByDescending("createdAt");
         query.findInBackground().subscribe(new Observer<List<AVObject>>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -497,36 +512,51 @@ public class CommunityActivity extends AppCompatActivity implements CommunityAda
                     String content = avObject.getString("content");
 
                     List comments = avObject.getList("comments");
-                    for (int i = 0; i < comments.size(); i++) {
-                        CommentsBean commentsBean = new CommentsBean();
-                        HashMap<Object, Object> comment = (HashMap<Object, Object>) comments.get(i);
-                        SenderBean commentman = new SenderBean();
-                        Log.d("msg", "" + comment.get("content"));
-                        commentsBean.setContent((String) comment.get("content"));
-                        commentman.setUsername((String) comment.get("nikename"));
+                    if(comments!=null)
+                    {
+                        for (int i = 0; i < comments.size(); i++) {
+                            CommentsBean commentsBean = new CommentsBean();
+                            HashMap<Object, Object> comment = (HashMap<Object, Object>) comments.get(i);
+                            SenderBean commentman = new SenderBean();
+                            Log.d("msg", "" + comment.get("content"));
+                            commentsBean.setContent((String) comment.get("content"));
+                            commentman.setUsername((String) comment.get("nikename"));
 
-                        Log.d("msg11","查询到的评论名字"+ comment.get("nikename"));
-                        commentman.setId((String) comment.get("id"));
-                        commentsBean.setSender(commentman);
-                        commentsBeans.add(commentsBean);
+                            Log.d("msg11","查询到的评论名字"+ comment.get("nikename"));
+                            commentman.setId((String) comment.get("id"));
+                            commentsBean.setSender(commentman);
+                            commentsBeans.add(commentsBean);
+                        }
+
                     }
+
 
                     List images = avObject.getList("images");
-                    for(int i=0;i<images.size();i++) {
-                        ImageBean imageBean = new ImageBean();
-                        String image = (String) images.get(i);
-                        Log.d("msg2", ""+image);
-                        imageBean.setUrl(image);
-                        imageBeans.add(imageBean);
+                    if(images!=null)
+                    {
+                        for(int i=0;i<images.size();i++) {
+                            ImageBean imageBean = new ImageBean();
+                            String image = (String) images.get(i);
+                            Log.d("msg2", ""+image);
+                            imageBean.setUrl(image);
+                            imageBeans.add(imageBean);
+                        }
                     }
+
                     List praiseMans = avObject.getList("praiseMans");
-                    for(int i=0;i<praiseMans.size();i++) {
-                        PraiseBean praiseBean = new PraiseBean();
-                        SenderBean praiseMan = new SenderBean();
-                        praiseMan.setUsername((String) praiseMans.get(i));
-                        praiseBean.setSenderBean(praiseMan);
-                        praiseBeans.add(praiseBean);
+
+                    if(praiseMans!=null)
+                    {
+                        for(int i=0;i<praiseMans.size();i++) {
+                            PraiseBean praiseBean = new PraiseBean();
+                            SenderBean praiseMan = new SenderBean();
+                            praiseMan.setUsername((String) praiseMans.get(i));
+                            praiseBean.setSenderBean(praiseMan);
+                            praiseBeans.add(praiseBean);
+                        }
+
                     }
+
 
 
 

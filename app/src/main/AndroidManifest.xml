@@ -19,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".activity.IntroduceActivity"></activity>
+        <activity android:name=".activity.CreateDynamicActivity"/>
+        <activity android:name=".activity.PayActivity" />
+        <activity android:name=".activity.IntroduceActivity" />
         <activity android:name=".activity.LandOrderActivity" />
         <activity android:name=".activity.AnimalActivity" />
         <activity android:name=".activity.AddressAddActivity" />
@@ -28,6 +30,15 @@
         <activity android:name=".activity.CommunityActivity" />
         <activity android:name=".activity.ShoppingCarActivity" />
         <activity android:name=".activity.ClipImageActivity" />
+
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+
         <activity
             android:name=".activity.LandDetailActivity"
             android:screenOrientation="portrait"
@@ -38,7 +49,6 @@
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- 即时通讯和推送 START -->
@@ -53,15 +63,15 @@
             </intent-filter>
         </receiver>
 
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.zkt.fileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
+<!--        <provider-->
+<!--            android:name="androidx.core.content.FileProvider"-->
+<!--            android:authorities="com.example.zkt.fileProvider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--                android:resource="@xml/file_paths" />-->
+<!--        </provider>-->
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
             android:authorities="com.example.zkt.BmobContentProvider" />
