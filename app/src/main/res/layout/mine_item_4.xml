@@ -55,10 +55,11 @@
 
 
             <TextView
+                android:id="@+id/tv_change_psd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="个人信息"
+                android:text="修改密码"
                 android:textColor="@color/black" />
 
             <RelativeLayout

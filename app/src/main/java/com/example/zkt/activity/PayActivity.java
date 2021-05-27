@@ -25,6 +25,11 @@ import org.json.JSONObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.leancloud.AVObject;
+import cn.leancloud.AVUser;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+
 public class PayActivity extends AppCompatActivity {
 
     private Button gotopay;
@@ -35,6 +40,7 @@ public class PayActivity extends AppCompatActivity {
     private String alipayqr = "";
 
     private  String money;
+    private  int goodsNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +80,40 @@ public class PayActivity extends AppCompatActivity {
         gotopay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //下单成功，即把数据上传到云端
+                //付款条件较为苛刻，后期可将该部分代码放到付款成功中
+
+                String owner= AVUser.getCurrentUser().getMobilePhoneNumber();
+                AVObject goodsOrder = new AVObject("GoodsOrder");
+                goodsOrder.put("owner",owner);
+                goodsOrder.put("state",1);
+                goodsOrder.put("orderPrice",money);
+                goodsOrder.put("goodsNumber",goodsNumber);
+                goodsOrder.saveInBackground().subscribe(new Observer<AVObject>() {
+
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(AVObject avObject) {
+
+                        Log.d("msg","创建商品订单成功");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                        Log.d("msg","创建商品订单失败"+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
                 if (!TextUtils.isEmpty(alipayqr)) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(alipayqr)));
                 } else {
@@ -88,6 +128,7 @@ public class PayActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bun");
         money = bundle.getString("data");
+        goodsNumber =bundle.getInt("goodsNumber");
         randomCode();
         createOrder();
     }
@@ -103,6 +144,7 @@ public class PayActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),jsonObject.getString("msg") + "",Toast.LENGTH_SHORT).show();
                         return;
                     }
+
                     tvname.setText(jsonObject.getString("name"));
                     tvprice.setText(jsonObject.getString("price"));
                     orderId = jsonObject.getString("orderId");
@@ -157,6 +199,10 @@ public class PayActivity extends AppCompatActivity {
                     if (!jsonObject.getString("code").equals("10001")) {
                         return;
                     }
+
+
+
+
                     AlertDialog.Builder alertdialogbuilder = new AlertDialog.Builder(PayActivity.this);
                     alertdialogbuilder.setMessage("提示：恭喜您支付成功");
                     alertdialogbuilder.setPositiveButton("确定", null);

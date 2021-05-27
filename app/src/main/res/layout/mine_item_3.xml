@@ -46,6 +46,7 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/tv_order_land"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -57,15 +58,16 @@
                 android:text="我的土地" />
 
             <TextView
+                android:id="@+id/tv_order_animal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawablePadding="5dp"
                 android:drawableTop="@drawable/icon_me_pick"
+                android:drawablePadding="5dp"
                 android:gravity="center_horizontal"
-                android:textSize="12sp"
+                android:text="认养订单"
                 android:textColor="@color/black"
-                android:text="认养订单" />
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="0dp"

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    app:contentPadding="5dp"
+    app:cardBackgroundColor="#DCDCDC"
+    app:cardCornerRadius="15dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="3dp"
+        android:background="@color/white">
+
+        <com.example.zkt.ui.widget.RoundImageView
+            android:id="@+id/iv_order_land"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            app:radius="7.5dp"
+            android:background="@drawable/land_order_photo_example" />
+
+        <TextView
+            android:id="@+id/tv_order_land_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_order_land"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="长丰精选草莓育苗地"
+            android:gravity="center"
+            android:background="@color/green"
+            android:textSize="20sp"
+            android:textColor="@color/white">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_land_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_order_land"
+            android:layout_below="@+id/tv_order_land_name"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="租赁期限：半年"
+            android:textSize="16sp"
+            android:textColor="@color/black">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_land_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_order_land"
+            android:layout_below="@+id/tv_land_time"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="服务类型：全托管"
+            android:textSize="16sp"
+            android:textColor="@color/black">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_land_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_order_land"
+            android:layout_below="@+id/tv_land_service"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="土地面积：10km²"
+            android:textSize="16sp"
+            android:textColor="@color/black">
+        </TextView>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

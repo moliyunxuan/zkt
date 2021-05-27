@@ -189,20 +189,6 @@ public class ShoppingCarActivity extends AppCompatActivity {
         });
 
 
-
-
-
-//        testAddGood();
-//        //使用本地JSON，作测试用。本来应该是将商品ID发送的服务器，服务器返回对应的商品信息；
-//        ShoppingCartHttpBiz.requestOrderList(this, new VollyHelperNew.ResponseCallBack() {
-//            @Override
-//            public void handleResponse(org.json.JSONObject response, int errCode) {
-//                mListGoods = ShoppingCartHttpBiz.handleOrderList(response, errCode);
-//               ShoppingCartBiz.updateShopList(mListGoods);
-//               updateListView();
-//            }//requestOrderList(list, new VollyHelperNew.ResponseCallBack())
-//
-//        });
     }
 
     private void updateListView() {

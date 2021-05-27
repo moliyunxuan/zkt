@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    app:contentPadding="5dp"
+    app:cardBackgroundColor="#DCDCDC"
+    app:cardCornerRadius="15dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/goods_order_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="找块田APP商品订单">
+        </TextView>
+
+        <TextView
+            android:id="@+id/goods_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:layout_below="@+id/goods_order_title"
+            android:textColor="@color/gray0"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="订单编号：">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_goods_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:layout_below="@+id/goods_order_title"
+            android:layout_toRightOf="@+id/goods_order_id"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="60af453c9dbdb33e9a9ee4a0">
+        </TextView>
+
+        <TextView
+            android:id="@+id/goods_order_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:layout_below="@+id/goods_order_id"
+            android:textColor="@color/gray0"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="订单创建时间：">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_goods_order_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:layout_below="@+id/goods_order_id"
+            android:layout_toRightOf="@+id/goods_order_time"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="2021-5-26">
+        </TextView>
+
+        <TextView
+            android:id="@+id/goods_order_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:layout_below="@+id/goods_order_time"
+            android:textColor="@color/gray0"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="商品个数：">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_goods_order_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:layout_below="@+id/goods_order_time"
+            android:layout_toRightOf="@+id/goods_order_number"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="3件">
+        </TextView>
+
+        <TextView
+            android:id="@+id/goods_order_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:layout_below="@+id/goods_order_number"
+            android:textColor="@color/gray0"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="付款金额：">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_goods_order_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:layout_below="@+id/goods_order_number"
+            android:layout_toRightOf="@+id/goods_order_price"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="￥90">
+        </TextView>
+
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

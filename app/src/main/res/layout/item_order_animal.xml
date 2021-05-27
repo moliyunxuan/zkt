@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    app:contentPadding="5dp"
+    app:cardBackgroundColor="#DCDCDC"
+    app:cardCornerRadius="15dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/ll_animal_order"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/animal_order_shop" />
+
+            <TextView
+                android:id="@+id/animal_order_shop_name"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="找块田自营业"/>
+
+            <TextView
+                android:id="@+id/animal_order_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:text="2021-05-09"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+
+        </LinearLayout>
+        <View
+            android:id="@+id/view1_animal_order"
+            android:layout_below="@id/ll_animal_order"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DCDCDC" />
+
+        <RelativeLayout
+            android:id="@+id/rl_animal_order"
+            android:layout_below="@+id/view1_animal_order"
+            android:layout_width="match_parent"
+            android:layout_height="110dp">
+
+            <com.example.zkt.ui.widget.RoundImageView
+                android:id="@+id/iv_order_animal"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/animal_order_example"
+                android:scaleType="centerCrop"
+                app:radius="7.5dp" />
+            <TextView
+                android:id="@+id/tv_order_animal_name"
+                android:layout_toRightOf="@id/iv_order_animal"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="藏香猪认养 第5期">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_order_animal_cycle"
+                android:layout_toRightOf="@+id/iv_order_animal"
+                android:layout_below="@+id/tv_order_animal_name"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray0"
+                android:fontFamily="@font/yuan"
+                android:text="生长周期：540天">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_order_animal_harvest"
+                android:layout_toRightOf="@+id/iv_order_animal"
+                android:layout_below="@+id/tv_order_animal_cycle"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray0"
+                android:fontFamily="@font/yuan"
+                android:text="收获：优质藏香猪肉50KG，分3次配送">
+            </TextView>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view2_animal_order"
+            android:layout_below="@id/rl_animal_order"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DCDCDC" />
+        <RelativeLayout
+            android:layout_below="@id/view2_animal_order"
+            android:layout_width="match_parent"
+            android:layout_height="25dp">
+            <TextView
+                android:id="@+id/tv_order_animal_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/gray0"
+                android:text="M609773ebfaa10e456486d7e5"
+                android:textSize="10sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_order_animal_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="合计：888元"
+                android:textSize="13sp">
+            </TextView>
+
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

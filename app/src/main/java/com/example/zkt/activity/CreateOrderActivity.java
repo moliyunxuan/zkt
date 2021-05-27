@@ -64,6 +64,8 @@ public class CreateOrderActivity extends AppCompatActivity implements View.OnCli
 
     private String TotalMoney;
 
+    private int goodsNumber;
+
     private HashMap<String, RelativeLayout> channels = new HashMap<>();
 
 
@@ -81,6 +83,7 @@ public class CreateOrderActivity extends AppCompatActivity implements View.OnCli
                 intent.setClass(getApplicationContext(),PayActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("data", TotalMoney);
+                bundle.putInt("goodsNumber",goodsNumber);
                 intent.putExtra("bun", bundle);
                 startActivity(intent);
             }
@@ -97,6 +100,7 @@ public class CreateOrderActivity extends AppCompatActivity implements View.OnCli
     private void showData() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+        goodsNumber = bundle.getInt("goodsNumber");
         TotalMoney = bundle.getString("Totalmoney");
         ArrayList<String> shoppingImages = bundle.getStringArrayList("shoppingImages");
 

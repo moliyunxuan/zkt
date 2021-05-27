@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,8 +36,12 @@ import android.widget.Toast;
 import com.example.zkt.BuildConfig;
 import com.example.zkt.MainActivity;
 import com.example.zkt.R;
+import com.example.zkt.activity.AnimalOrderActivity;
+import com.example.zkt.activity.ChangePasswordActivity;
 import com.example.zkt.activity.ClipImageActivity;
 import com.example.zkt.activity.GoodsDetailsActivity;
+import com.example.zkt.activity.GoodsOrderActivity;
+import com.example.zkt.activity.LandOrderActivity;
 import com.example.zkt.activity.ShoppingCarActivity;
 import com.example.zkt.bean.User;
 import com.example.zkt.ui.widget.CircleImageView;
@@ -99,6 +104,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     private TextView shoppingCar;
 
+    private  TextView changePassWord;
+
+    private  TextView animalOrder;
+    private  TextView landOrder;
+
+    private LinearLayout goodsOrder;
+
 
     private static final String IMAGE_FILE_CROP_NAME = "temp_crop_head_image.jpg";
 
@@ -110,6 +122,39 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         headImage = view.findViewById(R.id.iv_userinfo_pic);
         nickName=view.findViewById(R.id.tv_userinfo_name);
+
+        goodsOrder = view.findViewById(R.id.ll_goods_order);
+        goodsOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), GoodsOrderActivity.class));
+            }
+        });
+
+
+        landOrder=view.findViewById(R.id.tv_order_land);
+        landOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LandOrderActivity.class));
+            }
+        });
+
+        animalOrder=view.findViewById(R.id.tv_order_animal);
+        animalOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AnimalOrderActivity.class));
+            }
+        });
+
+        changePassWord = view.findViewById(R.id.tv_change_psd);
+        changePassWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ChangePasswordActivity.class));
+            }
+        });
         shoppingCar = view.findViewById(R.id.tv_shoppingCar);
         shoppingCar.setOnClickListener(new View.OnClickListener() {
             @Override

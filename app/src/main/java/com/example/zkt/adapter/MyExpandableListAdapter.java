@@ -220,9 +220,9 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
                         ArrayList<String> shoppingImages = ShoppingCartBiz.getShoppingImage(mListGoods);
                         Intent intent = new Intent();
                         intent.setClass(mContext,CreateOrderActivity.class);
-
                         Bundle bundle = new Bundle();
                         bundle.putString("Totalmoney",Totalmoney);
+                        bundle.putInt("goodsNumber",shoppingImages.size());
                         bundle.putStringArrayList("shoppingImages",shoppingImages);
                         intent.putExtras(bundle);
                         mContext.startActivity(intent);

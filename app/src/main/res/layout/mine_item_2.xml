@@ -36,9 +36,9 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_goods_order"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:gravity="center">
 
         <TextView
